@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import 'icon_content.dart';
+import 'reusable_card.dart';
+
 const bgContainer = Color(0xFF1D1E33);
 
 class Input extends StatefulWidget {
@@ -13,14 +16,6 @@ class Input extends StatefulWidget {
 }
 
 class _InputState extends State<Input> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,7 +41,7 @@ class _InputState extends State<Input> {
                 ),
                 Expanded(
                   child: ReusableCard(
-                    bgcolor: Colors.white38,
+                    bgcolor: bgContainer,
                     cardChild: IconContent(
                       iconName: FontAwesomeIcons.venus,
                       label: 'FEMALE',
@@ -70,7 +65,7 @@ class _InputState extends State<Input> {
             child: Row(
               children: const [
                 Expanded(
-                  child: ReusableCard(bgcolor: Colors.white38),
+                  child: ReusableCard(bgcolor: bgContainer),
                 ),
                 Expanded(
                   child: ReusableCard(bgcolor: bgContainer),
@@ -80,50 +75,6 @@ class _InputState extends State<Input> {
           ),
         ],
       ),
-    );
-  }
-}
-
-class IconContent extends StatelessWidget {
-  final IconData iconName;
-  final String label;
-
-  const IconContent({required this.iconName, required this.label});
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Icon(
-          iconName,
-          color: Colors.white70,
-          size: 80,
-        ),
-        const SizedBox(
-          height: 15,
-        ),
-        Text(label)
-      ],
-    );
-  }
-}
-
-class ReusableCard extends StatelessWidget {
-  final Color bgcolor;
-  final Widget? cardChild;
-
-  const ReusableCard({required this.bgcolor, this.cardChild});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: cardChild,
-      decoration: BoxDecoration(
-        color: bgcolor,
-        borderRadius: BorderRadius.circular(10),
-      ),
-      margin: const EdgeInsets.all(15.0),
     );
   }
 }
