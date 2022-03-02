@@ -26,16 +26,63 @@ class _InputState extends State<Input> {
           child: Text(widget.title),
         ),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: const <Widget>[
-            Text(
-              'You have pushed the button this many times:',
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Expanded(
+            child: Row(
+              children: const [
+                Expanded(
+                  child: ReusableCard(bgcolor: Colors.grey),
+                ),
+                Expanded(
+                  child: ReusableCard(bgcolor: Colors.white38),
+                ),
+              ],
             ),
-          ],
-        ),
+          ),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: const [
+                Expanded(
+                  child: ReusableCard(bgcolor: Colors.teal),
+                ),
+              ],
+            ),
+          ),
+          Expanded(
+            child: Row(
+              children: const [
+                Expanded(
+                  child: ReusableCard(bgcolor: Colors.deepPurpleAccent),
+                ),
+                Expanded(
+                  child: ReusableCard(bgcolor: Colors.black12),
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
+    );
+  }
+}
+
+class ReusableCard extends StatelessWidget {
+  final Color bgcolor;
+  const ReusableCard({required this.bgcolor});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        color: bgcolor,
+        borderRadius: BorderRadius.circular(10),
+      ),
+      margin: const EdgeInsets.all(10.0),
+      height: 200,
+      width: 170,
     );
   }
 }
