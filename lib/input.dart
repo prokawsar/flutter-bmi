@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+const bgContainer = Color(0xFF1D1E33);
+
 class Input extends StatefulWidget {
   const Input({Key? key, required this.title}) : super(key: key);
 
@@ -33,7 +35,7 @@ class _InputState extends State<Input> {
             child: Row(
               children: const [
                 Expanded(
-                  child: ReusableCard(bgcolor: Colors.grey),
+                  child: ReusableCard(bgcolor: bgContainer),
                 ),
                 Expanded(
                   child: ReusableCard(bgcolor: Colors.white38),
@@ -46,7 +48,7 @@ class _InputState extends State<Input> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: const [
                 Expanded(
-                  child: ReusableCard(bgcolor: Colors.teal),
+                  child: ReusableCard(bgcolor: bgContainer),
                 ),
               ],
             ),
@@ -55,7 +57,7 @@ class _InputState extends State<Input> {
             child: Row(
               children: const [
                 Expanded(
-                  child: ReusableCard(bgcolor: Colors.deepPurpleAccent),
+                  child: ReusableCard(bgcolor: Colors.white38),
                 ),
                 Expanded(
                   child: ReusableCard(bgcolor: Colors.black12),
