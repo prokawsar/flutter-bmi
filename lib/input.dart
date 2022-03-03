@@ -6,6 +6,8 @@ import 'reusable_card.dart';
 
 const bgContainer = Color(0xFF1D1E33);
 
+enum Gender { male, female }
+
 class Input extends StatefulWidget {
   const Input({Key? key, required this.title}) : super(key: key);
 
@@ -17,19 +19,7 @@ class Input extends StatefulWidget {
 
 class _InputState extends State<Input> {
   Color activeCard = const Color(0xFF916BBF);
-  Color cardBackgroundM = const Color(0xFF1D1E33);
-  Color cardBackgroundF = const Color(0xFF1D1E33);
-
-  void setActiveCard(int gender) {
-    // 1 is male
-    if (gender == 1) {
-      cardBackgroundM = activeCard;
-      cardBackgroundF = bgContainer;
-    } else if (gender == 2) {
-      cardBackgroundF = activeCard;
-      cardBackgroundM = bgContainer;
-    }
-  }
+  Gender? activeGender;
 
   @override
   Widget build(BuildContext context) {
@@ -49,11 +39,13 @@ class _InputState extends State<Input> {
                   child: GestureDetector(
                     onTap: () {
                       setState(() {
-                        setActiveCard(1);
+                        activeGender = Gender.male;
                       });
                     },
                     child: ReusableCard(
-                      bgcolor: cardBackgroundM,
+                      bgcolor: activeGender == Gender.male
+                          ? activeCard
+                          : bgContainer,
                       cardChild: const IconContent(
                         iconName: FontAwesomeIcons.mars,
                         label: 'MALE',
@@ -65,11 +57,13 @@ class _InputState extends State<Input> {
                   child: GestureDetector(
                     onTap: () {
                       setState(() {
-                        setActiveCard(2);
+                        activeGender = Gender.female;
                       });
                     },
                     child: ReusableCard(
-                      bgcolor: cardBackgroundF,
+                      bgcolor: activeGender == Gender.female
+                          ? activeCard
+                          : bgContainer,
                       cardChild: const IconContent(
                         iconName: FontAwesomeIcons.venus,
                         label: 'FEMALE',
