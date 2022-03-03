@@ -16,6 +16,21 @@ class Input extends StatefulWidget {
 }
 
 class _InputState extends State<Input> {
+  Color activeCard = const Color(0xFF916BBF);
+  Color cardBackgroundM = const Color(0xFF1D1E33);
+  Color cardBackgroundF = const Color(0xFF1D1E33);
+
+  void setActiveCard(int gender) {
+    // 1 is male
+    if (gender == 1) {
+      cardBackgroundM = activeCard;
+      cardBackgroundF = bgContainer;
+    } else if (gender == 2) {
+      cardBackgroundF = activeCard;
+      cardBackgroundM = bgContainer;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,22 +44,36 @@ class _InputState extends State<Input> {
         children: [
           Expanded(
             child: Row(
-              children: const [
+              children: [
                 Expanded(
-                  child: ReusableCard(
-                    bgcolor: bgContainer,
-                    cardChild: IconContent(
-                      iconName: FontAwesomeIcons.mars,
-                      label: 'MALE',
+                  child: GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        setActiveCard(1);
+                      });
+                    },
+                    child: ReusableCard(
+                      bgcolor: cardBackgroundM,
+                      cardChild: const IconContent(
+                        iconName: FontAwesomeIcons.mars,
+                        label: 'MALE',
+                      ),
                     ),
                   ),
                 ),
                 Expanded(
-                  child: ReusableCard(
-                    bgcolor: bgContainer,
-                    cardChild: IconContent(
-                      iconName: FontAwesomeIcons.venus,
-                      label: 'FEMALE',
+                  child: GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        setActiveCard(2);
+                      });
+                    },
+                    child: ReusableCard(
+                      bgcolor: cardBackgroundF,
+                      cardChild: const IconContent(
+                        iconName: FontAwesomeIcons.venus,
+                        label: 'FEMALE',
+                      ),
                     ),
                   ),
                 ),
