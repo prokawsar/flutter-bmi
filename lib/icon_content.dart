@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bmi/constants.dart';
 
 class IconContent extends StatelessWidget {
   final IconData iconName;
@@ -18,7 +19,10 @@ class IconContent extends StatelessWidget {
         const SizedBox(
           height: 15,
         ),
-        Text(label!)
+        Text(
+          label!,
+          style: labelTextStyle,
+        )
       ],
     );
   }

@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import 'constants.dart';
 import 'icon_content.dart';
 import 'reusable_card.dart';
-
-const bgContainer = Color(0xFF1D1E33);
 
 enum Gender { male, female }
 
@@ -72,9 +71,35 @@ class _InputState extends State<Input> {
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: const [
+              children: [
                 Expanded(
-                  child: ReusableCard(bgcolor: bgContainer),
+                  child: ReusableCard(
+                    bgcolor: bgContainer,
+                    cardChild: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Text(
+                          'HEIGHT',
+                          style: labelTextStyle,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.baseline,
+                          textBaseline: TextBaseline.alphabetic,
+                          children: const [
+                            Text(
+                              '100',
+                              style: labelLargeTextStyle,
+                            ),
+                            Text(
+                              'cm',
+                              style: labelTextStyle,
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
               ],
             ),
