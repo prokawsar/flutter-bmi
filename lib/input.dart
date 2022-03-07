@@ -19,6 +19,9 @@ class Input extends StatefulWidget {
 class _InputState extends State<Input> {
   Color activeCard = const Color(0xFF916BBF);
   Gender? activeGender;
+  double height = 150;
+  int weight = 10;
+  int age = 10;
 
   @override
   Widget build(BuildContext context) {
@@ -86,16 +89,26 @@ class _InputState extends State<Input> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.baseline,
                           textBaseline: TextBaseline.alphabetic,
-                          children: const [
+                          children: [
                             Text(
-                              '100',
+                              height.toString(),
                               style: labelLargeTextStyle,
                             ),
-                            Text(
+                            const Text(
                               'cm',
                               style: labelTextStyle,
                             ),
                           ],
+                        ),
+                        Slider(
+                          value: height,
+                          min: 120.0,
+                          max: 220.0,
+                          onChanged: (double newValue) {
+                            setState(() {
+                              height = newValue.round() as double;
+                            });
+                          },
                         ),
                       ],
                     ),
@@ -106,17 +119,93 @@ class _InputState extends State<Input> {
           ),
           Expanded(
             child: Row(
-              children: const [
+              children: [
                 Expanded(
-                  child: ReusableCard(bgcolor: bgContainer),
+                  child: ReusableCard(
+                    bgcolor: bgContainer,
+                    cardChild: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Text(
+                          'WEIGHT',
+                          style: labelTextStyle,
+                        ),
+                        Text(
+                          weight.toString(),
+                          style: labelLargeTextStyle,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            FloatingActionButton(
+                              backgroundColor: Colors.indigo,
+                              child: const Icon(FontAwesomeIcons.minus),
+                              onPressed: () {},
+                            ),
+                            FloatingActionButton(
+                              backgroundColor: Colors.indigo,
+                              child: const Icon(FontAwesomeIcons.plus),
+                              onPressed: () {},
+                            )
+                          ],
+                        )
+                      ],
+                    ),
+                  ),
                 ),
                 Expanded(
-                  child: ReusableCard(bgcolor: bgContainer),
+                  child: ReusableCard(
+                    bgcolor: bgContainer,
+                    cardChild: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Text(
+                          'AGE',
+                          style: labelTextStyle,
+                        ),
+                        Text(
+                          age.toString(),
+                          style: labelLargeTextStyle,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: const [
+                            RoundIconButton(icon: FontAwesomeIcons.minus),
+                            RoundIconButton(icon: FontAwesomeIcons.plus)
+                          ],
+                        )
+                      ],
+                    ),
+                  ),
                 ),
               ],
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class RoundIconButton extends StatelessWidget {
+  final IconData icon;
+
+  const RoundIconButton({required this.icon});
+
+  @override
+  Widget build(BuildContext context) {
+    return RawMaterialButton(
+      shape: const CircleBorder(),
+      onPressed: () {},
+      child: Icon(
+        icon,
+        color: Colors.white,
+      ),
+      fillColor: Colors.indigo,
+      elevation: 6.0,
+      constraints: const BoxConstraints.tightFor(
+        width: 56.0,
+        height: 56.0,
       ),
     );
   }
