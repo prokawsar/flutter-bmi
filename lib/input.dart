@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import 'components/RoundButton.dart';
+import 'components/bottom_button.dart';
+import 'components/round_button.dart';
 import 'constants.dart';
 import 'icon_content.dart';
 import 'reusable_card.dart';
@@ -213,25 +214,16 @@ class _InputState extends State<Input> {
               ],
             ),
           ),
-          GestureDetector(
-            onTap: () {
-              print("hello");
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const ResultPage()));
-            },
-            child: Container(
-              child: const Text(
-                'Calculate',
-                style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold),
-              ),
-              height: 120,
-              width: double.infinity,
-              decoration: const BoxDecoration(color: Colors.white),
-            ),
-          )
+          BottomButton(
+              text: 'CALCULATE',
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const ResultPage(),
+                  ),
+                );
+              })
         ],
       ),
     );
