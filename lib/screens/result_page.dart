@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bmi/components/bottom_button.dart';
-import 'package:flutter_bmi/reusable_card.dart';
+import 'package:flutter_bmi/components/reusable_card.dart';
 
 class ResultPage extends StatelessWidget {
   const ResultPage({Key? key}) : super(key: key);
