@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import 'components/RoundButton.dart';
 import 'constants.dart';
 import 'icon_content.dart';
 import 'reusable_card.dart';
+import 'screens/result_page.dart';
 
 enum Gender { male, female }
 
@@ -137,16 +139,27 @@ class _InputState extends State<Input> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            FloatingActionButton(
-                              backgroundColor: Colors.indigo,
-                              child: const Icon(FontAwesomeIcons.minus),
-                              onPressed: () {},
+                            RoundIconButton(
+                              icon: FontAwesomeIcons.minus,
+                              onPressed: () {
+                                setState(() {
+                                  if (weight > 1) {
+                                    weight--;
+                                  }
+                                });
+                              },
                             ),
-                            FloatingActionButton(
-                              backgroundColor: Colors.indigo,
-                              child: const Icon(FontAwesomeIcons.plus),
-                              onPressed: () {},
-                            )
+                            const SizedBox(
+                              width: 10,
+                            ),
+                            RoundIconButton(
+                              icon: FontAwesomeIcons.plus,
+                              onPressed: () {
+                                setState(() {
+                                  weight++;
+                                });
+                              },
+                            ),
                           ],
                         )
                       ],
@@ -169,9 +182,28 @@ class _InputState extends State<Input> {
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
-                          children: const [
-                            RoundIconButton(icon: FontAwesomeIcons.minus),
-                            RoundIconButton(icon: FontAwesomeIcons.plus)
+                          children: [
+                            RoundIconButton(
+                              icon: FontAwesomeIcons.minus,
+                              onPressed: () {
+                                setState(() {
+                                  if (age > 0) {
+                                    age--;
+                                  }
+                                });
+                              },
+                            ),
+                            const SizedBox(
+                              width: 10,
+                            ),
+                            RoundIconButton(
+                              icon: FontAwesomeIcons.plus,
+                              onPressed: () {
+                                setState(() {
+                                  age++;
+                                });
+                              },
+                            )
                           ],
                         )
                       ],
@@ -181,31 +213,26 @@ class _InputState extends State<Input> {
               ],
             ),
           ),
+          GestureDetector(
+            onTap: () {
+              print("hello");
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const ResultPage()));
+            },
+            child: Container(
+              child: const Text(
+                'Calculate',
+                style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold),
+              ),
+              height: 120,
+              width: double.infinity,
+              decoration: const BoxDecoration(color: Colors.white),
+            ),
+          )
         ],
-      ),
-    );
-  }
-}
-
-class RoundIconButton extends StatelessWidget {
-  final IconData icon;
-
-  const RoundIconButton({required this.icon});
-
-  @override
-  Widget build(BuildContext context) {
-    return RawMaterialButton(
-      shape: const CircleBorder(),
-      onPressed: () {},
-      child: Icon(
-        icon,
-        color: Colors.white,
-      ),
-      fillColor: Colors.indigo,
-      elevation: 6.0,
-      constraints: const BoxConstraints.tightFor(
-        width: 56.0,
-        height: 56.0,
       ),
     );
   }
