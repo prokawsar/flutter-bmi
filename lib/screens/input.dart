@@ -23,7 +23,7 @@ class Input extends StatefulWidget {
 class _InputState extends State<Input> {
   Color activeCard = const Color(0xFF916BBF);
   Gender? activeGender;
-  int height = 150;
+  double height = 150;
   int weight = 40;
   int age = 20;
 
@@ -95,7 +95,7 @@ class _InputState extends State<Input> {
                           textBaseline: TextBaseline.alphabetic,
                           children: [
                             Text(
-                              height.toString(),
+                              height.round().toString(),
                               style: labelLargeTextStyle,
                             ),
                             const Text(
@@ -105,12 +105,12 @@ class _InputState extends State<Input> {
                           ],
                         ),
                         Slider(
-                          value: height as double,
+                          value: height,
                           min: 120.0,
                           max: 220.0,
                           onChanged: (double newValue) {
                             setState(() {
-                              height = newValue.round();
+                              height = newValue;
                             });
                           },
                         ),

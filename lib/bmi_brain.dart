@@ -4,7 +4,7 @@ class BMIBrain {
   BMIBrain(this.weight, this.height);
 
   final int weight;
-  final int height;
+  final double height;
 
   double _bmi = 0.0;
 
