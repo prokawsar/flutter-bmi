@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bmi/bmi_brain.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../components/bottom_button.dart';
@@ -22,9 +23,9 @@ class Input extends StatefulWidget {
 class _InputState extends State<Input> {
   Color activeCard = const Color(0xFF916BBF);
   Gender? activeGender;
-  double height = 150;
-  int weight = 10;
-  int age = 10;
+  int height = 150;
+  int weight = 40;
+  int age = 20;
 
   @override
   Widget build(BuildContext context) {
@@ -104,12 +105,12 @@ class _InputState extends State<Input> {
                           ],
                         ),
                         Slider(
-                          value: height,
+                          value: height as double,
                           min: 120.0,
                           max: 220.0,
                           onChanged: (double newValue) {
                             setState(() {
-                              height = newValue.round() as double;
+                              height = newValue.round();
                             });
                           },
                         ),
@@ -217,10 +218,13 @@ class _InputState extends State<Input> {
           BottomButton(
               text: 'CALCULATE',
               onTap: () {
+                BMIBrain calc = BMIBrain(weight, height);
+                calc.calculateBMI();
+
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const ResultPage(),
+                    builder: (context) => ResultPage(result: calc),
                   ),
                 );
               })

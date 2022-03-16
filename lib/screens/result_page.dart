@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bmi/bmi_brain.dart';
 import 'package:flutter_bmi/components/bottom_button.dart';
 import 'package:flutter_bmi/components/reusable_card.dart';
 
 class ResultPage extends StatelessWidget {
-  const ResultPage({Key? key}) : super(key: key);
+  const ResultPage({required this.result});
+
+  final BMIBrain result;
 
   @override
   Widget build(BuildContext context) {
@@ -30,12 +33,17 @@ class ResultPage extends StatelessWidget {
               cardChild: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: const [
+                children: [
                   Center(
                     child: Text(
-                      'NORMAL',
+                      // 'NORMAL',
+                      result.getResult().toUpperCase(),
                       style: TextStyle(
-                        color: Colors.lightGreen,
+                        color: result.getResult() == 'Overweight'
+                            ? Colors.red
+                            : result.getResult() == 'Underweight'
+                                ? Colors.limeAccent
+                                : Colors.lightGreenAccent,
                         fontSize: 25.0,
                         fontWeight: FontWeight.bold,
                       ),
@@ -43,8 +51,9 @@ class ResultPage extends StatelessWidget {
                   ),
                   Center(
                     child: Text(
-                      '18.5',
-                      style: TextStyle(
+                      // '18.5',
+                      result.calculateBMI(),
+                      style: const TextStyle(
                         fontSize: 50.0,
                         fontWeight: FontWeight.bold,
                         color: Colors.white,
@@ -53,8 +62,9 @@ class ResultPage extends StatelessWidget {
                   ),
                   Center(
                     child: Text(
-                      'Some general advice according to you BMI result.',
-                      style: TextStyle(fontSize: 20),
+                      result.getAdvice(),
+                      // 'Some general advice according to you BMI result.',
+                      style: const TextStyle(fontSize: 20),
                     ),
                   ),
                 ],
